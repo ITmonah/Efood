@@ -14,8 +14,8 @@ model users {
   id       Int     @id @default(autoincrement())
   email    String  @unique
   name     String?
-  gender   genders @relation(fields: [genderId], references: [id])
-  genderId Int
+  gender   genders @relation(fields: [genderid], references: [id])
+  genderid Int
 }
 
 model genders {
