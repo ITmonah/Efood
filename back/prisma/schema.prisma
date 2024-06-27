@@ -7,19 +7,19 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = process.env.DATABASE_URL
+  url      = env("DATABASE_URL")
 }
 
 model users {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  genders genders[]
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  gender   genders @relation(fields: [genderId], references: [id])
+  genderId Int
 }
 
 model genders {
-  id     Int    @id @default(autoincrement())
-  name   String
-  user   users   @relation(fields: [userId], references: [id])
-  userId Int
+  id    Int     @id @default(autoincrement())
+  name  String
+  users users[]
 }

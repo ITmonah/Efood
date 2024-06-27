@@ -7,7 +7,7 @@ async function main() {
         create: {
             email: 'alice@prisma.io',
             name: 'Alice',
-            genders: {
+            gender: {
                 create: {
                     name: "female"
                 },
@@ -20,9 +20,9 @@ async function main() {
         create: {
             email: 'bob@prisma.io',
             name: 'Bob',
-            genders: {
+            gender: {
                 create: {
-                    name: "female"
+                    name: "male"
                 },
             },
         },
