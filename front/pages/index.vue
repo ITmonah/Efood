@@ -18,27 +18,36 @@
       <h1>
         Our popular <span style="color: rgb(255, 104, 56)">Category</span>
       </h1>
-      <ul class="category_btns">
-        <div v-for="item in category" :key="item.id">
-          <li>
-            <input
-              type="radio"
-              name="cat_radio"
-              :id="`rad_cat` + item.name"
-              :checked="item.name == 'Burger'"
-              style="display: none"
-            />
-            <label :for="`rad_cat` + item.name">
-              <img :src="`../img/category_${item.image}.svg`" alt="" />
-              <p>{{ item.name }}</p>
-            </label>
-          </li>
+      <div class="main_box_items">
+        <ul class="category_btns">
+          <div v-for="item in category" :key="item.id">
+            <li>
+              <input
+                type="radio"
+                name="cat_radio"
+                :id="`rad_cat` + item.name"
+                :checked="item.name == 'Burger'"
+                style="display: none"
+              />
+              <label :for="`rad_cat` + item.name">
+                <img :src="`../img/category_${item.image}.svg`" alt="" />
+                <p>{{ item.name }}</p>
+              </label>
+            </li>
+          </div>
+        </ul>
+        <div v-for="p in product" :key="p.id">
+          <FoodCard :product="p" />
         </div>
-      </ul>
+      </div>
     </div>
     <div class="main_box"></div>
   </div>
 </template>
+
+<script setup>
+const { data: product } = await useFetch("https://fakestoreapi.com/products");
+</script>
 
 <script>
 export default {
@@ -57,6 +66,11 @@ export default {
 </script>
 
 <style scoped>
+.main_box_items {
+  display: flex;
+  flex-direction: column;
+  gap: 39px;
+}
 .main {
   display: flex;
   flex-direction: column;
