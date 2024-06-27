@@ -23,3 +23,11 @@ model genders {
   name  String
   users users[]
 }
+
+model foods {
+  id    Int    @id @default(autoincrement())
+  img   String
+  stars Int
+  name  String @unique
+  price Float
+}
