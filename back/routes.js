@@ -1,14 +1,10 @@
 //запросы к нашей бд
 async function routes(fastify, options) {
     const client = fastify.db.client
-    fastify.get('/', async function (request, reply) {
-        try {
-            const { rows } = await client.query('SELECT * FROM users')
-            //console.log(rows)
-            reply.send(rows)
-        } catch (err) {
-            throw new Error(err)
-        }
+    fastify.get('/',{
+        onRequest:[fastify.authenticate]
+    }, async function (request, reply) {
+        return request.user
     })
 }
 module.exports = routes
