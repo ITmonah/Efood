@@ -36,17 +36,73 @@
             </li>
           </div>
         </ul>
-        <div v-for="p in product" :key="p.id">
-          <FoodCard :product="p" />
+        <div class="grid grid-cols-5 gap-8">
+          <div v-for="p in product" :key="p.id">
+            <FoodCard :product="p" />
+          </div>
         </div>
       </div>
     </div>
-    <div class="main_box"></div>
+    <div class="main_box_row">
+      <img src="public/img/food_delivery.png" alt="food_delivery" />
+      <div class="main_box_row_text">
+        <h1>
+          <span style="color: rgb(255, 104, 56)">Stay</span> at home, we will
+          Provide <span style="color: rgb(255, 104, 56)">good food</span>
+        </h1>
+        <div style="display: flex; flex-direction: column; gap: 21px">
+          <p>
+            We provide tasty food and superfast delivery at your home. Let’s use
+            our services right now and get discounts of up to 50%.
+          </p>
+          <div class="main_box_row_item">
+            <img src="public/img/main_box1.svg" alt="item1" />
+            <p>fasted delivery in 30 Minutes</p>
+          </div>
+          <div class="main_box_row_item">
+            <img src="public/img/main_box2.svg" alt="item2" />
+            <p>300+ delivery men</p>
+          </div>
+          <div class="main_box_row_item">
+            <img src="public/img/main_box3.svg" alt="item3" />
+            <p>500+ restaurant & cafe shop</p>
+          </div>
+        </div>
+        <button>See more</button>
+      </div>
+    </div>
+    <div class="main_box">
+      <h1>Top Food <span style="color: #ff7a50">restaurant</span></h1>
+      <div class="grid grid-cols-3 gap-11">
+        <div v-for="p in product" :key="p.id">
+          <RestCard :product="p" />
+        </div>
+      </div>
+    </div>
+    <div class="main_box_row">
+      <div class="main_box_row_text2">
+        <h1>
+          Download Our <span style="color: rgb(255, 104, 56)">Mobile App</span>
+        </h1>
+        <p>
+          It's all at your fingertips -- the restaurants you love. Find the
+          right food to suit your mood, and make the first bite last. Go ahead,
+          download app and get 50% discount
+        </p>
+        <div class="flex gap-8">
+          <img src="public/img/app_store.svg" alt="app_store" />
+          <img src="public/img/google_play.svg" alt="google_play" />
+        </div>
+      </div>
+      <img src="public/img/tele.png" alt="telephones" />
+    </div>
   </div>
 </template>
 
 <script setup>
-const { data: product } = await useFetch("https://fakestoreapi.com/products");
+const { data: product } = await useFetch(
+  "https://fakestoreapi.com/products?limit=5"
+);
 </script>
 
 <script>
@@ -67,6 +123,7 @@ export default {
 
 <style scoped>
 .main_box_items {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 39px;
@@ -75,7 +132,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: left;
-  gap: 100px;
+  gap: 130px;
 }
 .main_head {
   display: flex;
@@ -193,5 +250,68 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 50px;
+}
+.main_box_row_text h1,
+.main_box_row_text2 h1 {
+  color: rgb(54, 56, 83);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 50px;
+  letter-spacing: 0%;
+  text-align: left;
+  text-transform: capitalize;
+}
+.main_box_row_text p,
+.main_box_row_text2 p {
+  color: rgb(54, 56, 83);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+.main_box_row_text2 {
+  width: 538px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.main_box_row_item p {
+  color: rgb(54, 56, 83);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: left;
+  text-transform: capitalize;
+}
+.main_box_row_item {
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+}
+.main_box_row_text {
+  width: 449px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.main_box_row_text button {
+  width: 176px;
+  height: 58px;
+  border-radius: 30px 30px 1px 30px;
+  box-shadow: 0px 22px 40px 0px rgba(255, 104, 56, 0.19);
+  background: rgb(255, 122, 80);
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-top: 20px;
+}
+.main_box_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

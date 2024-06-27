@@ -1,5 +1,36 @@
 <template>
-  <div class="food_card"><img :src="product.image" alt="" /></div>
+  <div class="food_card">
+    <img :src="product.image" alt="" />
+    <div>
+      <div class="flex items-center gap-1">
+        <div v-for="i in 5" :key="i">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="16"
+            viewBox="0 0 20 16"
+            fill="none"
+          >
+            <path
+              d="M11.1651 0.722328L13.2524 4.40761C13.4062 4.67461 13.6997 4.86002 14.0382 4.90123L18.7267 5.50116C19.0005 5.53494 19.249 5.66185 19.4169 5.85551C19.5828 6.0467 19.6541 6.28898 19.6138 6.52713C19.581 6.72491 19.475 6.90786 19.3128 7.04795L15.9155 9.94129C15.667 10.1432 15.5545 10.4423 15.6145 10.7349L16.4509 14.8025C16.54 15.2937 16.1696 15.7568 15.6145 15.8499C15.3857 15.8821 15.1513 15.8483 14.945 15.756L10.7628 13.8417C10.4524 13.704 10.0858 13.704 9.77543 13.8417L5.59328 15.756C5.07942 15.9958 4.44272 15.8326 4.15672 15.3876C4.05076 15.2104 4.01325 15.0085 4.04795 14.8116L4.88438 10.7431C4.94439 10.4514 4.83093 10.1506 4.58337 9.94871L1.18608 7.05702C0.781933 6.7142 0.769743 6.14971 1.15889 5.79453C1.16733 5.78711 1.17671 5.77887 1.18608 5.77063C1.34737 5.62642 1.55929 5.53494 1.78809 5.51105L6.47659 4.91029C6.81417 4.86826 7.10767 4.6845 7.26239 4.41585L9.27469 0.722328C9.45379 0.405882 9.82512 0.208927 10.2283 0.217168H10.354C10.7038 0.254251 11.0085 0.444613 11.1651 0.722328Z"
+              fill="#FAC412"
+              :fill-opacity="star_col[i - 1]"
+            />
+            <path
+              d="M10.2423 13.739C10.0607 13.744 9.88382 13.7868 9.72469 13.8635L5.56299 15.7735C5.05378 15.987 4.44441 15.8213 4.15891 15.3935C4.05314 15.2187 4.01476 15.0184 4.05033 14.8222L4.88155 10.7624C4.93771 10.4672 4.82538 10.1672 4.58107 9.95945L1.18226 7.06851C0.778819 6.72146 0.77133 6.15185 1.16635 5.79656C1.17196 5.79161 1.17664 5.78749 1.18226 5.78337C1.34326 5.64323 1.55106 5.55091 1.77478 5.52206L6.46722 4.91535C6.80701 4.87743 7.10187 4.69113 7.25163 4.42074L9.2913 0.680736C9.48506 0.37903 9.85667 0.199325 10.2498 0.218284C10.2423 0.463112 10.2423 13.5725 10.2423 13.739Z"
+              fill="#FAC412"
+              :fill-opacity="half_star_col[i - 1]"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="food_card_text">
+      <h1 class="line-clamp-1">{{ product.title }}</h1>
+      <p>${{ product.price }}</p>
+      <button>Add to Cart</button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -7,13 +38,85 @@ export default defineComponent({
   props: {
     product: Object,
   },
+  data() {
+    return {
+      raiting: 4,
+      star_col: [],
+      half_star_col: [],
+    };
+  },
+  methods: {
+    getRaiting() {
+      for (i in this.raiting) {
+        this.star_col.push(0);
+      }
+    },
+  },
+  beforeMount() {
+    this.getRaiting();
+  },
 });
 </script>
 
 <style scoped>
+.food_card {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  width: 210px;
+  height: 290px;
+  border-radius: 12px;
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .food_card img {
-  width: 144px;
-  height: 144px;
+  width: 115px;
+  height: 115px;
   object-fit: contain;
+  margin-bottom: 4px;
+}
+.food_card_text {
+  margin-top: 29px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.food_card_text h1 {
+  color: rgb(54, 56, 83);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0%;
+  text-align: center;
+}
+.food_card_text p {
+  color: rgb(54, 56, 83);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0%;
+  text-align: center;
+}
+.food_card_text button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 106px;
+  height: 32px;
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 18px;
+  letter-spacing: 0%;
+  text-align: left;
+  border-radius: 2px;
+  transition: 0.3s;
+  background: rgb(255, 122, 80);
+}
+.food_card_text button:hover {
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.12);
 }
 </style>
