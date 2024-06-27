@@ -1,9 +1,10 @@
 const fastify = require('fastify')({ logger: true })
 const dbconnector = require('./../db')
-fastify.register(dbconnector)
-
 const route = require('./../routes')
+
+fastify.register(dbconnector)
 fastify.register(route)
+
 async function start() {
     try {
         await fastify.listen(3000)
@@ -13,5 +14,3 @@ async function start() {
     }
 }
 start()
-
-//мы заключили наш плагин в модуль быстрого подключения. Теперь мы можем получить доступ к экземпляру клиента базы данных в любом месте нашего сайта
