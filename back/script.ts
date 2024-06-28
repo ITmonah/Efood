@@ -8,13 +8,14 @@ async function main() {
             data: {
                 email: "xd22@xd22222343422.xd2",
                 name: "Sanya",
+                genderid: 1
             }
         }
     )
     const userWithIncl = await prisma.users.findMany(
         {
             include: {
-                genders: true
+                gender: true
             }
         }
     )
