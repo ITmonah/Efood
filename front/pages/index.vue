@@ -90,12 +90,94 @@
           download app and get 50% discount
         </p>
         <div class="flex gap-8">
-          <img src="public/img/app_store.svg" alt="app_store" />
-          <img src="public/img/google_play.svg" alt="google_play" />
+          <button>
+            <img src="public/img/app_store.svg" alt="app_store" />
+          </button>
+          <button>
+            <img src="public/img/google_play.svg" alt="google_play" />
+          </button>
         </div>
       </div>
       <img src="public/img/tele.png" alt="telephones" />
     </div>
+    <div class="main_box">
+      <h1>What Our Client Are <span style="color: #ff7a50">Saying</span></h1>
+      <div class="main_box_review">
+        <img :src="product[0].image" alt="" />
+        <div class="main_box_review_box">
+          <div class="main_box_review_text">
+            <span>“</span>
+            <p>
+              EFood has the most intriguing food order system in the country. UI
+              in both their app and web Is very simple and easy to use,
+              enhancing the UX. Their delivery men are also quite professional
+              and knows the neighborhood well. Till now I never had to guide
+              them to my address for delivery;
+            </p>
+            <span style="transform: rotate(180deg); bottom: -25px; right: -35px"
+              >“</span
+            >
+          </div>
+          <div class="review_bottom">
+            <div class="review_bottom_text">
+              <h1>Anglina Jole</h1>
+              <p>Food lover</p>
+            </div>
+            <div class="flex gap-11">
+              <button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                >
+                  <path
+                    d="M27 16H5"
+                    stroke="#7B7B7B"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M14 7L5 16L14 25"
+                    stroke="#7B7B7B"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                >
+                  <path
+                    d="M5 16H27"
+                    stroke="#FF7A50"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M18 7L27 16L18 25"
+                    stroke="#FF7A50"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <SubBox />
   </div>
 </template>
 
@@ -122,6 +204,42 @@ export default {
 </script>
 
 <style scoped>
+.review_bottom_text {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.review_bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 12px;
+}
+.main_box_review_text {
+  position: relative;
+}
+.main_box_review_text p {
+  width: 573px;
+  color: rgb(54, 56, 83);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 45px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+.main_box_review_text span {
+  color: rgb(221, 221, 221);
+  font-family: Nunito;
+  font-size: 80px;
+  font-weight: 400;
+  line-height: 109px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  position: absolute;
+  top: -20px;
+  left: -50px;
+}
 .main_box_items {
   width: 100%;
   display: flex;
@@ -309,6 +427,43 @@ export default {
   margin-top: 20px;
 }
 .main_box_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.review_bottom_text h1 {
+  color: rgb(255, 122, 80);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+.review_bottom_text p {
+  color: rgb(170, 170, 170);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+.main_box_review_box {
+  height: 358px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 40px;
+}
+.main_box_review img {
+  object-fit: cover;
+  width: 433px;
+  height: 519px;
+  border-radius: 24px;
+  box-shadow: 0px 22px 40px 0px rgba(254, 182, 54, 0.08);
+}
+.main_box_review {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
