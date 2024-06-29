@@ -25,9 +25,17 @@ model genders {
 }
 
 model foods {
-  id    Int    @id @default(autoincrement())
-  img   String
-  stars Int
-  name  String @unique
-  price Float
+  id         Int        @id @default(autoincrement())
+  img        String
+  stars      Int
+  name       String     @unique
+  price      Float
+  category   categories @relation(fields: [categoryid], references: [id])
+  categoryid Int
+}
+
+model categories {
+  id    Int     @id @default(autoincrement())
+  name  String
+  foods foods[]
 }
