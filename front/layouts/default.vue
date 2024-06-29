@@ -22,16 +22,6 @@
             </button>
           </li>
         </ul>
-        <modal
-          v-show="isModalVisible"
-          @close="closeModal"
-          @click1="showModal1"
-        />
-        <modal1
-          v-show="isModalVisible1"
-          @close1="closeModal1"
-          @close="closeModal"
-        />
       </nav>
     </header>
     <div style="width: 1171px"><slot /></div>
@@ -196,6 +186,12 @@
         <p><NuxtLink to="/contract">Terms</NuxtLink></p>
       </div>
     </div>
+    <modal v-show="isModalVisible" @close="closeModal" @click1="showModal1" />
+    <modal1
+      v-show="isModalVisible1"
+      @close1="closeModal1"
+      @close="closeModal"
+    />
   </div>
 </template>
 
@@ -209,7 +205,7 @@ export default {
     modal,
     modal1,
   },
-  setup() {
+  data() {
     return {
       isModalVisible: false,
       isModalVisible1: false,

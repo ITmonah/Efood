@@ -1,7 +1,7 @@
 <template>
   <transition name="modal-fade">
     <div class="modal-backdrop">
-      <form @submit.prevent="get_reg()">
+      <form>
         <div
           class="modal"
           role="dialog"
@@ -39,9 +39,9 @@
               </svg>
             </button>
             <button type="button" class="btn-close-reg" @click="close">
-              Назад
+              Back
             </button>
-            <h1>Регистрация</h1>
+            <h1>Sing up</h1>
           </div>
           <div class="input_form">
             <label for="auth2">Email</label>
@@ -54,7 +54,7 @@
             />
           </div>
           <div class="input_form">
-            <label for="auth3">Отображаемое имя</label>
+            <label for="auth3">Username</label>
             <input
               type="text"
               id="auth3"
@@ -64,7 +64,7 @@
             />
           </div>
           <div class="input_form">
-            <label for="auth4">Пароль</label>
+            <label for="auth4">Password</label>
             <input
               type="password"
               id="auth4"
@@ -74,7 +74,7 @@
             />
           </div>
           <div class="btns">
-            <button class="btn-sub" :disabled="isDisabled">Регистрация</button>
+            <button class="btn-sub" :disabled="isDisabled">Sing up</button>
           </div>
         </div>
       </form>
@@ -100,37 +100,6 @@ export default {
     close1() {
       this.$emit("close1");
       this.$emit("close");
-    },
-    async get_reg() {
-      let credetentials = {
-        name: this.name,
-        mail: this.login,
-        password: this.password,
-      };
-      this.isDisabled = true;
-      fetch("http://127.0.0.1:8000/user/reg", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credetentials),
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          if (!json.detail) {
-            this.isDisabled = true;
-            alert("Успешная регистрация");
-            this.close();
-            this.isDisabled = false;
-          } else {
-            if (this.password < 6) {
-              alert("Минимальная длина пароля - 6 символов");
-            } else {
-              this.isDisabled = false;
-              alert(JSON.stringify(json.detail));
-            }
-          }
-        });
     },
   },
 };
@@ -167,7 +136,7 @@ export default {
   position: relative;
 }
 .btn-reg {
-  color: rgb(235, 81, 96);
+  color: rgb(255, 122, 80);
   font-size: 20px;
   font-weight: 500;
   line-height: 24px;
@@ -177,8 +146,9 @@ export default {
 }
 
 .btn-sub {
-  border-radius: 6px;
-  background: rgb(235, 81, 96);
+  border-radius: 5px;
+  box-shadow: 0px 4px 14px 0px rgba(255, 104, 56, 0.19);
+  background: rgb(255, 122, 80);
   width: 228px;
   height: 49px;
   color: rgb(255, 255, 255);
@@ -186,6 +156,12 @@ export default {
   font-weight: 600;
   line-height: 24px;
   transition: 0.3s;
+}
+.btn-sub:hover {
+  transform: scale(1.1);
+}
+.btn-sub:active {
+  opacity: 0.6;
 }
 .btn-sub:disabled {
   opacity: 0.5;
@@ -231,10 +207,10 @@ export default {
   background: transparent;
   position: absolute;
   top: -30px;
-  left: 350px;
+  left: 300px;
 }
 .btn-close-reg {
-  color: rgb(235, 81, 96);
+  color: rgb(255, 122, 80);
   width: 64px;
   height: 24px;
   font-size: 20px;
@@ -242,8 +218,8 @@ export default {
   line-height: 24px;
   position: absolute;
   text-align: left;
-  top: -26px;
-  left: -150px;
+  top: -24px;
+  left: -206px;
 }
 .btns {
   display: flex;

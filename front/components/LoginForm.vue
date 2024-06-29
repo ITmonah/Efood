@@ -1,7 +1,7 @@
 <template>
   <transition name="modal-fade">
     <div class="modal-backdrop">
-      <form @submit.prevent="get_token()">
+      <form>
         <div
           class="modal"
           role="dialog"
@@ -38,24 +38,24 @@
                 />
               </svg>
             </button>
-            <h1>Авторизация</h1>
+            <h1>Sing in</h1>
           </div>
           <div class="input_form">
             <label for="auth">Email</label>
             <input type="email" id="auth" v-model="login" required="" />
           </div>
           <div class="input_form">
-            <label for="auth1">Пароль</label>
+            <label for="auth1">Password</label>
             <input type="password" id="auth1" v-model="password" required="" />
           </div>
           <div class="btns">
-            <button class="btn-sub" type="submit">Войти</button>
-            <p style="user-select: none">_</p>
+            <button class="btn-sub" type="submit">sing in</button>
+            <p style="user-select: none; color: white">_</p>
           </div>
         </div>
       </form>
       <div style="position: relative">
-        <button class="btn-reg" @click="close1">регистрация</button>
+        <button class="btn-reg" @click="close1">sing up</button>
       </div>
     </div>
   </transition>
@@ -76,32 +76,6 @@ export default {
     },
     close1() {
       this.$emit("click1");
-    },
-    async get_token() {
-      let credetentials = {
-        mail: this.login,
-        pwd: this.password,
-      };
-      fetch("http://127.0.0.1:8000/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credetentials),
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          if (!json.detail) {
-            localStorage.setItem("access_token", json.access_token);
-            location.reload();
-          } else {
-            if (this.password.length < 6) {
-              alert("Минимальная длина пароля - 6 символов");
-            } else {
-              alert(JSON.stringify(json.detail));
-            }
-          }
-        });
     },
   },
 };
@@ -139,7 +113,7 @@ export default {
   position: relative;
 }
 .btn-reg {
-  color: rgb(235, 81, 96);
+  color: rgb(255, 122, 80);
   font-size: 20px;
   font-weight: 500;
   line-height: 24px;
@@ -149,16 +123,31 @@ export default {
   position: absolute;
   bottom: 35px;
   right: -70px;
+  transition: 0.3s;
+}
+.btn-reg:hover {
+  transform: scale(1.1);
+}
+.btn-reg:active {
+  opacity: 0.6;
 }
 .btn-sub {
-  border-radius: 6px;
-  background: rgb(235, 81, 96);
+  border-radius: 5px;
+  box-shadow: 0px 4px 14px 0px rgba(255, 104, 56, 0.19);
+  background: rgb(255, 122, 80);
   width: 228px;
   height: 49px;
   color: rgb(255, 255, 255);
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
+  transition: 0.3s;
+}
+.btn-sub:hover {
+  transform: scale(1.1);
+}
+.btn-sub:active {
+  opacity: 0.6;
 }
 .modal-backdrop h1 {
   color: rgb(0, 0, 0);
@@ -204,7 +193,7 @@ export default {
   background: transparent;
   position: absolute;
   top: -30px;
-  left: 350px;
+  left: 293px;
 }
 .btns {
   display: flex;
