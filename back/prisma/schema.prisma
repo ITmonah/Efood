@@ -13,7 +13,8 @@ datasource db {
 model users {
   id       Int     @id @default(autoincrement())
   email    String  @unique
-  name     String?
+  name     String? @unique
+  password String?
   gender   genders @relation(fields: [genderid], references: [id])
   genderid Int
 }
