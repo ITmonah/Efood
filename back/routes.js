@@ -150,12 +150,13 @@ async function routes(fastify, options) {
     fastify.get('/getUsername', {
         onRequest: [fastify.authenticate]
     }, async function (request, reply) {
-        const query = await client.query('SELECT * FROM users WHERE name = $1', [request.name])
+        const query = await client.query('SELECT * FROM users WHERE email = $1', [request.user.username])
+        
         if (!query.rows[0]) {
             throw new Error('User doesn\'t exists!')
         }
 
-        reply.send(200)
+        reply.code(201)
         return {
             "username": query.rows[0].name,
             "email": query.rows[0].email,
@@ -175,11 +176,11 @@ async function routes(fastify, options) {
             if (!query.rows[0]) {
                 throw new Error('User doesn\'t exists!')
             }
-
+            
             matched_flag = await bcrypt.compare(request.body.password, query.rows[0].password)
 
             if (matched_flag) {
-                const token = fastify.jwt.sign({ username: request.body.name })
+                const token = fastify.jwt.sign({ username: `${request.body.email}` })
                 reply.code(201)
                 return { "token": token }
             } else {
