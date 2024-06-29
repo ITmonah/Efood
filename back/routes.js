@@ -91,14 +91,15 @@ async function getList(fastify, qs) {
     return await paginate(fastify, {
         page: parseInt(qs.page) || 1, //страница
         perPage: parseInt(qs.perPage) || 5, //количество товаров на странице
+        category: qs.category
         //q: qs.q ? String(qs.q).trim() : null // перевод в строку, если есть, иначе ничего
     })
 }
 
-async function paginate(fastify, { page, perPage }) {
+async function paginate(fastify, { page, perPage, category }) {
     const client = fastify.db.client
     try {
-        const total = await client.query('SELECT COUNT(*) FROM foods')
+        const total = await client.query('SELECT COUNT(*) FROM foods JOIN categories ON foods.category = categories.id WHERE categories.name = $1',[category])
         count_total = parseInt(total.rows[0].count)
 
         const currentPage = Math.min(page, perPage) //текущая страница
@@ -153,7 +154,12 @@ async function routes(fastify, options) {
         if (!query.rows[0]) {
             throw new Error('User doesn\'t exists!')
         }
-        return request.user
+
+        reply.send(200)
+        return {
+            "username": query.rows[0].name,
+            "email": query.rows[0].email,
+        }
     })
 
     fastify.post('/show_all', async function (request, reply) {
@@ -163,14 +169,15 @@ async function routes(fastify, options) {
 
     fastify.post('/login', UserLogin, async function (request, reply) {
         try {
-            let hashed_pwd = ''
             let matched_flag = false
+
             const query = await client.query('SELECT * FROM users WHERE email = $1', [request.body.email])
             if (!query.rows[0]) {
                 throw new Error('User doesn\'t exists!')
             }
-            // console.log(request.body.password)
+
             matched_flag = await bcrypt.compare(request.body.password, query.rows[0].password)
+
             if (matched_flag) {
                 const token = fastify.jwt.sign({ username: request.body.name })
                 reply.code(201)
@@ -190,13 +197,16 @@ async function routes(fastify, options) {
             if (user_query.rows[0]) {
                 throw new Error('User already exists!')
             }
+
             const email = request.body.email
             const name = request.body.name
             const gender = request.body.genderid
             let pwd = request.body.password
+
             pwd_hashed = await bcrypt.hash(pwd, saltRounds)
-            console.log(pwd_hashed)
+
             const query = await client.query('INSERT INTO users (email, name, genderid, password) VALUES ($1, $2, $3, $4)', [email, name, gender, pwd_hashed])
+
             reply.code(201)
             return { created: true } //какой ответ получим
         } catch (err) {
@@ -221,6 +231,7 @@ async function routes(fastify, options) {
             const stars = request.body.stars
             const name = request.body.name
             const price = request.body.price
+
             const query = await client.query('INSERT INTO foods (img, stars, name, price) VALUES ($1, $2, $3, $4)', [img, stars, name, price])
             reply.code(201)
             return { created: true }
