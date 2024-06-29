@@ -141,5 +141,23 @@ async function routes(fastify, options) {
             throw new Error(err)
         }
     })
+    //получение ресторанов
+    fastify.get('/restaurant', async function (request, reply) {
+        try {
+            const { rows } = await client.query('SELECT * FROM restaurants')
+            reply.send(rows)
+        } catch (err) {
+            throw new Error(err)
+        }
+    })
+    //получение отзывов
+    fastify.get('/review', async function (request, reply) {
+        try {
+            const { rows } = await client.query('SELECT * FROM reviews')
+            reply.send(rows)
+        } catch (err) {
+            throw new Error(err)
+        }
+    })
 }
 module.exports = routes
