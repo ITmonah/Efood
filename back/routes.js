@@ -91,7 +91,7 @@ async function getList(fastify, qs) {
     return await paginate(fastify, {
         page: parseInt(qs.page) || 1, //страница
         perPage: parseInt(qs.perPage) || 5, //количество товаров на странице
-        category: qs.category
+        category: qs.category || "Burger" //"Burger" - по умолчанию
         //q: qs.q ? String(qs.q).trim() : null // перевод в строку, если есть, иначе ничего
     })
 }
@@ -99,7 +99,7 @@ async function getList(fastify, qs) {
 async function paginate(fastify, { page, perPage, category }) {
     const client = fastify.db.client
     try {
-        const total = await client.query('SELECT COUNT(*) FROM foods JOIN categories ON foods.category = categories.id WHERE categories.name = $1',[category])
+        const total = await client.query('SELECT COUNT(*) FROM foods JOIN categories ON foods.categoryid = categories.id WHERE categories.name = $1', [category])
         count_total = parseInt(total.rows[0].count)
 
         const currentPage = Math.min(page, perPage) //текущая страница
@@ -107,7 +107,7 @@ async function paginate(fastify, { page, perPage, category }) {
         const lastPage = Math.ceil(count_total / perPage) //последняя страница 
 
         //const data = await client.query('SELECT * FROM foods LIMIT %s OFFSET %s' % (perPage, offset))
-        const data = await client.query('SELECT * FROM foods LIMIT $1 OFFSET $2', [perPage, offset])
+        const data = await client.query('SELECT foods.id, foods.img, foods.stars, foods.name, foods.price, categories.id AS id_cat, categories.name AS name_cat FROM foods JOIN categories ON foods.categoryid = categories.id WHERE categories.name = $1 LIMIT $2 OFFSET $3', [category, perPage, offset])
         new_data = data.rows
         return {
             new_data,
@@ -151,7 +151,7 @@ async function routes(fastify, options) {
         onRequest: [fastify.authenticate]
     }, async function (request, reply) {
         const query = await client.query('SELECT * FROM users WHERE email = $1', [request.user.username])
-        
+
         if (!query.rows[0]) {
             throw new Error('User doesn\'t exists!')
         }
@@ -176,7 +176,7 @@ async function routes(fastify, options) {
             if (!query.rows[0]) {
                 throw new Error('User doesn\'t exists!')
             }
-            
+
             matched_flag = await bcrypt.compare(request.body.password, query.rows[0].password)
 
             if (matched_flag) {
