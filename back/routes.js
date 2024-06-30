@@ -1,5 +1,4 @@
 const { table } = require("console")
-
 const { sign, hash } = require('crypto')
 
 const UserCreate = {
@@ -253,6 +252,15 @@ async function routes(fastify, options) {
     fastify.get('/review', async function (request, reply) {
         try {
             const { rows } = await client.query('SELECT * FROM reviews')
+            reply.send(rows)
+        } catch (err) {
+            throw new Error(err)
+        }
+    })
+    //получение категорий
+    fastify.get('/category', async function (request, reply) {
+        try {
+            const { rows } = await client.query('SELECT * FROM categories')
             reply.send(rows)
         } catch (err) {
             throw new Error(err)
