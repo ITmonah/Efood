@@ -15,17 +15,17 @@ model users {
   email    String    @unique
   name     String?   @unique
   password String?
-  status   String
-  img      String
+  status   String    @default("")
+  img      String    @default("")
   gender   genders   @relation(fields: [genderid], references: [id])
-  genderid Int
+  genderid Int       @default(1)
   reviews  reviews[]
 }
 
 model genders {
-  id      Int       @id @default(autoincrement())
-  name    String
-  users   users[]
+  id    Int     @id @default(autoincrement())
+  name  String
+  users users[]
 }
 
 model foods {
@@ -52,11 +52,11 @@ model restaurants {
 }
 
 model reviews {
-  id        Int      @id @default(autoincrement())
-  img       String
-  text      String
-  name      String
-  status    String
-  user      users    @relation(fields: [userid], references: [id])
-  userid    Int
+  id     Int    @id @default(autoincrement())
+  img    String
+  text   String
+  name   String
+  status String
+  user   users  @relation(fields: [userid], references: [id])
+  userid Int
 }

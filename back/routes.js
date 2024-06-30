@@ -199,7 +199,7 @@ async function routes(fastify, options) {
     })
 
     fastify.post('/show_all', async function (request, reply) {
-        const query = await client.query('SELECT * FROM reviews JOIN users on reviews.userid = users.id')
+        const query = await client.query('SELECT * FROM users')
         reply.send(query.rows)
     })
 
