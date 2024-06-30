@@ -330,8 +330,9 @@ async function main() {
         {
             data: {
                 name: "Blaze Pizza",
-                first_date: new Date(2024, 6, 1, (11 + 5), 0, 0,).toISOString(),
-                second_date: new Date(2024, 6, 1, (10 + 5), 0, 0,).toISOString(),
+                img: "https://s3-alpha-sig.figma.com/img/50e4/e885/c672d1329db01d1ae94ba093eb9d1f70?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=q4lPJck0mL2g3t7vEWuzeVdpSUwtYMLB2YBZNnOJvDkUjfaAcCH3q1oHLlZ8VR6NXpXrqqOwC17FQ85DUCRtBHvG~dhoCWikw3La9rCAi62SprI5jeDZILziIrHiwBxzb5CZ3~hrf~to~ZFIqQ1T45vhr3qRZ3YoylmDLWs66x0-uSFD2su9fxDuhLV43yQEZZ4wC7W8KLgyMuVk1W5qE-hQjEQD8dFcuZcHDuDKLpsUKxOEQfTag44ELVnJQiWKFXgD4rzy8kL-4SXBGuHA4V1Et1kVhQkGY47m53HCyQImy1nNUfZaaxsgIJts~6DqYnF5w5BtiSScy5bsLqkwAA__",
+                first_date: new Date(2024, 6, 1, (11 + 5), 0, 0).toISOString(),
+                second_date: new Date(2024, 6, 1, (10 + 5), 0, 0).toISOString(),
             }
         }
     )
@@ -339,6 +340,7 @@ async function main() {
         {
             data: {
                 name: "Pizza Ranch",
+                img: "https://s3-alpha-sig.figma.com/img/11c1/bc37/1785cca2d17816de53959c7c4300e27b?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cDwtx0mIUtEML6XIRF3YUssmIM0YWk77-4rNGq~YHFa7qjAjxQLauZY~az8gJFaXH68sWUuxoMdymrenpBX28gLOsExoIKizs4AJN7S9w89j02L0dREbOkbo2PMN1e-egwXVfmL6l7yKsliTjOiPDBveNEvIs8vqiPurBlphnGOlZYFx6pZuF0FZnnAp9StFEVzJWuV9XFidfIXWDdtmqm5LAW~1byObHKu4x9FNoFLPZEolVT-Fj2FZXuKOdxXnv16GxonkJPSzQ7f5d7yfU-RrEDPfaOicQQci4QlgqSSBWPnfSua-cSzJ3iEFvC~MK8oV9pIjFh4vVNtKFWfhNQ__",
                 first_date: new Date(2024, 6, 1, (9 + 5), 0, 0).toISOString(),
                 second_date: new Date(2024, 6, 1, (10 + 5), 0, 0).toISOString(),
             }
@@ -348,6 +350,7 @@ async function main() {
         {
             data: {
                 name: "Dion`s Pizza Hut",
+                img: "https://s3-alpha-sig.figma.com/img/5fcf/6806/e63c27fb1a705c5849089079a4973cd3?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=AobPjIpat79wnioIPlJW0ve7bcrpzeYOUAeH1GGaQ~AwnACK1ugDoC~EnsGVtewlf3BU3egRyIMXurk4RYlriuEgpVb5d5utzFC0jUraMgn7hbxL8B~rpVNQLyyb~vOHDMHjgeK7reeXVZeQT0mLy-ixYeUs7La7MP4w5rsRBP4AVDL8i1gRgfEEDaxcrZcVgihjO7R2eyUZ9Ueb2vbmAOxVhBIohfm5Dkvx-oRD352yhUn4UBAVb-srPY2Xd3ooPZT98Xwl8m5EkUr1DCShO1X9QzTA72ycJHLQpz329sY9Y80exakm3ht0nuDjEqeX8MfyTN64Ca9fGUGA~fF3QQ__",
                 first_date: new Date(2024, 6, 1, (10 + 5), 0, 0).toISOString(),
                 second_date: new Date(2024, 6, 1, (12 + 5), 0, 0).toISOString(),
             }
@@ -357,6 +360,7 @@ async function main() {
         {
             data: {
                 name: "Royel Burger",
+                img: "https://s3-alpha-sig.figma.com/img/b56e/7cf9/209a1728613bce1a8a5f845cb0f5ef77?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ehPVApau~ojAjOFyeLrwxydVwMe0eG7Vi-6Krr6C2wFJcjsKAzf9zqzuaQL6QZZdt1uXk~FPJrrUQGPLTZ-YtDOmoGW2hs3SmpocebT6QQiJMdizxz-CpHxC-8aCd2H-vhGO8fK8CusWk4zGauOO-g1QK6D7gGaGnwqBEmpxbKOoBaf4Vj4R86xxxC9ESjYn0-slkWi~sGxYuSkva0bPJ9bwkMP8ryXT9-Fm0cD0DdY5l4emUqaHrJWuQyAZHaHP5l1lVbSSnu1vm98o6rSIDcf3jjpgbxmK7fhUkCeQ~EaiI10XXCOE6c1PwNDknMHiVuCCYTDwpJ9o-RCa4-B5rA__",
                 first_date: new Date(2024, 6, 1, (11 + 5), 0, 0).toISOString(),
                 second_date: new Date(2024, 6, 1, (10 + 5), 0, 0).toISOString(),
             }
@@ -366,6 +370,7 @@ async function main() {
         {
             data: {
                 name: "KFC Restaurant",
+                img: "https://s3-alpha-sig.figma.com/img/98c0/a547/a745e0f33d03c9b13357ec0b093b6262?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jozTcJDkWyRH4Jne8oz0SAZOJqzuMNDojhPSsfFwGJ~1ghC9NtEIgKB~yqcwV5JoBSHUhRlFZ~VhDHj1JXHcpQ3a8nFB907eh8TPXmh3fkrqyU~CZLqpOzesuuonAdQNyqnjWaTV4dZx2mgGuANWluKyo9QLs9w4mx3BX7M2RzcfcUeaNrKN94KuyxoiBaGDuzo~dYz3zfc50pTrJMbLVYEb-cO6My36-5F9Mv8Gk8davBXlBdejDiZciSjv31V8Dlhu4MQSpIwXtgePJoNsPmPeanIdo0Ht6D9uft-xrJvry2rMtnWh25TxgGp4HWCvfYacX7SF~HJ46riZl~stxQ__",
                 first_date: new Date(2024, 6, 1, (9 + 5), 0, 0).toISOString(),
                 second_date: new Date(2024, 6, 1, (10 + 5), 0, 0).toISOString(),
             }
@@ -375,6 +380,7 @@ async function main() {
         {
             data: {
                 name: "Star Food",
+                img: "https://s3-alpha-sig.figma.com/img/d90e/6341/ba3d12c8cf047ae0a269ef8f04790744?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=VOksSxGRMF8ah0HNgJcjlN4ovKPFDmvCuBH-5t~Hm3mT2Cp3vtvqPmRuudp74FdkAl9dpxqlDcbamW0arKq22GRZBEv5~nIcESaWFU-tVvVaXKq1OyHPOqlJ2pPTEQHvy6s-~ZZEPrWn9ZuUxeYHlSJfrj3WYz65nF4~1G9QerWabfDyiyKhk2XlfgH--5Wsp-TtBUkyGVVUTjHbvR8fMXaWEjih3zVThd2JQjLJ6SH-LZYx9o2WgN~V0SFkPgzHYI9NaFmygWYg-abEarxh2OYSouUGukYzwjIsaF-I~XGcpRrHJymZvQCWSEBgOk5uiU0wplobBagEyXmd-9le6w__",
                 first_date: new Date(2024, 6, 1, (10 + 5), 0, 0).toISOString(),
                 second_date: new Date(2024, 6, 1, (12 + 5), 0, 0).toISOString(),
             }
