@@ -11,12 +11,15 @@ datasource db {
 }
 
 model users {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  name     String? @unique
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  name     String?   @unique
   password String?
-  gender   genders @relation(fields: [genderid], references: [id])
-  genderid Int
+  status   String    @default("")
+  img      String    @default("")
+  gender   genders   @relation(fields: [genderid], references: [id])
+  genderid Int       @default(1)
+  reviews  reviews[]
 }
 
 model genders {
@@ -55,4 +58,6 @@ model reviews {
   text   String
   name   String
   status String
+  user   users  @relation(fields: [userid], references: [id])
+  userid Int
 }

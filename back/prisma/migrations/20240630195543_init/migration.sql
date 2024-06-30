@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "users" ALTER COLUMN "genderid" SET DEFAULT 1,
+ALTER COLUMN "img" SET DEFAULT '',
+ALTER COLUMN "status" SET DEFAULT '';
