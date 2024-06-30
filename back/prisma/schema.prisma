@@ -17,15 +17,7 @@ model users {
   password String?
   status   String    @default("")
   img      String    @default("")
-  gender   genders   @relation(fields: [genderid], references: [id])
-  genderid Int       @default(1)
   reviews  reviews[]
-}
-
-model genders {
-  id    Int     @id @default(autoincrement())
-  name  String
-  users users[]
 }
 
 model foods {
