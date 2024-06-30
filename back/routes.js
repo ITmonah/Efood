@@ -15,7 +15,6 @@ const UserCreate = {
             properties: {
                 email: { type: 'string' },
                 name: { type: 'string' },
-                genderid: { type: 'integer' },
                 password: { type: 'string' },
             },
         },
@@ -26,7 +25,6 @@ const UserCreate = {
                 properties: {
                     email: { type: 'string' },
                     name: { type: 'string' },
-                    genderid: { type: 'integer' },
                     password: { type: 'string' },
                 },
             }
@@ -125,7 +123,7 @@ async function getList(fastify, qs) {
     return await paginate(fastify, {
         page: parseInt(qs.page) || 1, //страница
         perPage: parseInt(qs.perPage) || 5, //количество товаров на странице
-        category: qs.category || "Burger" //"Burger" - по умолчанию
+        category: String(qs.category) || "Burger" //"Burger" - по умолчанию
         //q: qs.q ? String(qs.q).trim() : null // перевод в строку, если есть, иначе ничего
     })
 }
@@ -140,7 +138,6 @@ async function paginate(fastify, { page, perPage, category }) {
         const offset = (currentPage - 1) * perPage //значение смещения
         const lastPage = Math.ceil(count_total / perPage) //последняя страница 
 
-        //const data = await client.query('SELECT * FROM foods LIMIT %s OFFSET %s' % (perPage, offset))
         const data = await client.query('SELECT foods.id, foods.img, foods.stars, foods.name, foods.price, categories.id AS id_cat, categories.name AS name_cat FROM foods JOIN categories ON foods.categoryid = categories.id WHERE categories.name = $1 LIMIT $2 OFFSET $3', [category, perPage, offset])
         new_data = data.rows
         return {
@@ -235,12 +232,11 @@ async function routes(fastify, options) {
 
             const email = request.body.email
             const name = request.body.name
-            const gender = request.body.genderid
             let pwd = request.body.password
 
             pwd_hashed = await bcrypt.hash(pwd, saltRounds)
 
-            const query = await client.query('INSERT INTO users (email, name, genderid, password) VALUES ($1, $2, $3, $4)', [email, name, gender, pwd_hashed])
+            const query = await client.query('INSERT INTO users (email, name, password) VALUES ($1, $2, $3)', [email, name, pwd_hashed])
 
             reply.code(201)
             return { created: true } //какой ответ получим
@@ -288,8 +284,8 @@ async function routes(fastify, options) {
         try {
             const reviews_query = await client.query('SELECT * FROM reviews')
             for (let i = 1; i <= Object.keys(reviews_query.rows).length; i++) {
-                const user_query = await client.query('SELECT * FROM users WHERE id = $1', [reviews_query.rows[i-1].userid])
-                reviews_query.rows[i-1].userid = user_query.rows[0]
+                const user_query = await client.query('SELECT * FROM users WHERE id = $1', [reviews_query.rows[i - 1].userid])
+                reviews_query.rows[i - 1].userid = user_query.rows[0]
             }
             reply.code(201)
             return {

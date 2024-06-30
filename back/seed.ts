@@ -401,11 +401,6 @@ async function main() {
                         password: "$2a$10$AlXGr7dxsVKJIYy7aNEjBOIg9AOz4wTT3UTWpXgG0fRuq5PCiRPqq",
                         status: "Food Lover",
                         img: "https://yandex-images.clstorage.net/UWHJ96389/bd0d27k12uoQ/AhdJZW_T1CiDSFgySdl5nueBS8HoMvKzWcubI5x3BXoXLYnHOTY8nNSanyS--hD_GIzCUXuVmzBiL19o1A_OICZDjdFeBmF8si0YsnmJWEszsFoESHcjF3z-e6afwdddgHsOVA7BC2slbwqEu_v0SxxPZNUcs403ZEkrrLE4qQAD9_jnOgMk-eSqajPJekgqR-C6VejV0zANCJxgzzDlDwNp7ZZPEUrp1j4rJov5YPqebRZDDAIMlHeqaX1BmeoBknbKpHsApfokCojCSXm7SFdzaafbt2GynHtO4j-QBY1hO90lfHFJGWZ_6_RbKiPrD_43oa-R3GRGKylvgnhLoYMHuJfZQTcIxIrrYcroSJr0EUpUGNZiYD94vCPucMQNcOqMd17wC6tEvyhGuYozuT_u1fA_Es5m5gi4HEA6SGFh9blm-9GUOBS7KsLLSgmYNGHrJrhWoAHuiD2A_kI3_-D7rlaPEOmphB9apFqq4cssPfXxnvHMV4Z5K3zDehvzU4UZxpnDxzvEKbuzKLsaizWD6YXZtTNhX1nMYg0jhE9zyAwWLrBYi1X9WDY5iWDKDC8X0U-C_pbX6hp_odpYcEMWSndrgeZK1rqoEZm722kWc1uGSDaBMn7J7nEdYoTPIsiuBc7iOSi1r6kmayqiaE4eJUEMU_52RnjajOMKGRMTB8olGSCEeaWbatBayojaNlGIVnpn0LB8q25zjVF3L9I5nTVcYbsoRa1YpimYULpv3CdCnULMBXUou57CG1rzA_XYJikSR_vli5rgi_naO6ZQa-fbpYKzrYot489iF80DaK5UHoDqmxWcuBZJ6mAIf541E-2QfmaHGQnO4mpaUyM2eSTbAGUKxQvrIljoWytHMhomOHchYG5bj4NuQpUPgWvMF7ywaKnmfTt2eJtwSyx990ANAhx1pavq3oOKyQCx1SjWa8JVK_aqupE7W4o4VuJ65UhlYuGNODwhg",
-                        gender:{
-                            create:{
-                                name:"male"
-                            }
-                        }
                     }
                 },
             }
@@ -425,7 +420,6 @@ async function main() {
                         password: "$2a$10$AlXGr7dxsVKJIYy7aNEjBOIg9AOz4wTT3UTWpXgG0fRuq5PCiRPqq",
                         status: "Food Lover",
                         img: "https://yandex-images.clstorage.net/UWHJ96389/bd0d27k12uoQ/AhdJZW_T1CiDSFgySdl5nueBS8HoMvKzWcubI5x3BXoXLYnHOTY8nNSanyS--hD_GIzCUXuVmzBiL19o1A_OICZDjdFeBmF8si0YsnmJWEszsFoESHcjF3z-e6afwdddgHsOVA7BC2slbwqEu_v0SxxPZNUcs403ZEkrrLE4qQAD9_jnOgMk-eSqajPJekgqR-C6VejV0zANCJxgzzDlDwNp7ZZPEUrp1j4rJov5YPqebRZDDAIMlHeqaX1BmeoBknbKpHsApfokCojCSXm7SFdzaafbt2GynHtO4j-QBY1hO90lfHFJGWZ_6_RbKiPrD_43oa-R3GRGKylvgnhLoYMHuJfZQTcIxIrrYcroSJr0EUpUGNZiYD94vCPucMQNcOqMd17wC6tEvyhGuYozuT_u1fA_Es5m5gi4HEA6SGFh9blm-9GUOBS7KsLLSgmYNGHrJrhWoAHuiD2A_kI3_-D7rlaPEOmphB9apFqq4cssPfXxnvHMV4Z5K3zDehvzU4UZxpnDxzvEKbuzKLsaizWD6YXZtTNhX1nMYg0jhE9zyAwWLrBYi1X9WDY5iWDKDC8X0U-C_pbX6hp_odpYcEMWSndrgeZK1rqoEZm722kWc1uGSDaBMn7J7nEdYoTPIsiuBc7iOSi1r6kmayqiaE4eJUEMU_52RnjajOMKGRMTB8olGSCEeaWbatBayojaNlGIVnpn0LB8q25zjVF3L9I5nTVcYbsoRa1YpimYULpv3CdCnULMBXUou57CG1rzA_XYJikSR_vli5rgi_naO6ZQa-fbpYKzrYot489iF80DaK5UHoDqmxWcuBZJ6mAIf541E-2QfmaHGQnO4mpaUyM2eSTbAGUKxQvrIljoWytHMhomOHchYG5bj4NuQpUPgWvMF7ywaKnmfTt2eJtwSyx990ANAhx1pavq3oOKyQCx1SjWa8JVK_aqupE7W4o4VuJ65UhlYuGNODwhg",
-                        genderid: 1,
                     }
                 },
             }
@@ -445,7 +439,6 @@ async function main() {
                         password: "$2a$10$AlXGr7dxsVKJIYy7aNEjBOIg9AOz4wTT3UTWpXgG0fRuq5PCiRPqq",
                         status: "Food Lover",
                         img: "https://yandex-images.clstorage.net/UWHJ96389/bd0d27k12uoQ/AhdJZW_T1CiDSFgySdl5nueBS8HoMvKzWcubI5x3BXoXLYnHOTY8nNSanyS--hD_GIzCUXuVmzBiL19o1A_OICZDjdFeBmF8si0YsnmJWEszsFoESHcjF3z-e6afwdddgHsOVA7BC2slbwqEu_v0SxxPZNUcs403ZEkrrLE4qQAD9_jnOgMk-eSqajPJekgqR-C6VejV0zANCJxgzzDlDwNp7ZZPEUrp1j4rJov5YPqebRZDDAIMlHeqaX1BmeoBknbKpHsApfokCojCSXm7SFdzaafbt2GynHtO4j-QBY1hO90lfHFJGWZ_6_RbKiPrD_43oa-R3GRGKylvgnhLoYMHuJfZQTcIxIrrYcroSJr0EUpUGNZiYD94vCPucMQNcOqMd17wC6tEvyhGuYozuT_u1fA_Es5m5gi4HEA6SGFh9blm-9GUOBS7KsLLSgmYNGHrJrhWoAHuiD2A_kI3_-D7rlaPEOmphB9apFqq4cssPfXxnvHMV4Z5K3zDehvzU4UZxpnDxzvEKbuzKLsaizWD6YXZtTNhX1nMYg0jhE9zyAwWLrBYi1X9WDY5iWDKDC8X0U-C_pbX6hp_odpYcEMWSndrgeZK1rqoEZm722kWc1uGSDaBMn7J7nEdYoTPIsiuBc7iOSi1r6kmayqiaE4eJUEMU_52RnjajOMKGRMTB8olGSCEeaWbatBayojaNlGIVnpn0LB8q25zjVF3L9I5nTVcYbsoRa1YpimYULpv3CdCnULMBXUou57CG1rzA_XYJikSR_vli5rgi_naO6ZQa-fbpYKzrYot489iF80DaK5UHoDqmxWcuBZJ6mAIf541E-2QfmaHGQnO4mpaUyM2eSTbAGUKxQvrIljoWytHMhomOHchYG5bj4NuQpUPgWvMF7ywaKnmfTt2eJtwSyx990ANAhx1pavq3oOKyQCx1SjWa8JVK_aqupE7W4o4VuJ65UhlYuGNODwhg",
-                        genderid: 1,
                     }
                 },
             }
