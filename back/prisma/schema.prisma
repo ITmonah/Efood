@@ -11,18 +11,21 @@ datasource db {
 }
 
 model users {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  name     String? @unique
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  name     String?   @unique
   password String?
-  gender   genders @relation(fields: [genderid], references: [id])
+  status   String
+  img      String
+  gender   genders   @relation(fields: [genderid], references: [id])
   genderid Int
+  reviews  reviews[]
 }
 
 model genders {
-  id    Int     @id @default(autoincrement())
-  name  String
-  users users[]
+  id      Int       @id @default(autoincrement())
+  name    String
+  users   users[]
 }
 
 model foods {
@@ -49,9 +52,11 @@ model restaurants {
 }
 
 model reviews {
-  id     Int    @id @default(autoincrement())
-  img    String
-  text   String
-  name   String
-  status String
+  id        Int      @id @default(autoincrement())
+  img       String
+  text      String
+  name      String
+  status    String
+  user      users    @relation(fields: [userid], references: [id])
+  userid    Int
 }

@@ -1,6 +1,9 @@
 const { table } = require("console")
 
 const { sign, hash } = require('crypto')
+const { stat } = require("fs")
+const { type } = require("os")
+const { text } = require("stream/consumers")
 
 const UserCreate = {
     schema: {
@@ -87,6 +90,38 @@ const FoodCreate = {
     }
 }
 
+const ReviewSchema = {
+    schema: {
+        querystring: {
+            //query параметры
+        },
+        body: {
+            //что нам надо ввести
+            type: "object",
+            properties: {
+                img: { type: 'string' },
+                text: { type: 'string' },
+                name: { type: 'string' },
+                status: { type: 'string' },
+                user: { type: 'users' }
+            },
+        },
+        response: {
+            200: {
+                //какой ответ мы получим
+                type: "object",
+                properties: {
+                    img: { type: 'string' },
+                    text: { type: 'string' },
+                    name: { type: 'string' },
+                    status: { type: 'string' },
+                    user: { type: 'users' }
+                },
+            }
+        }
+    }
+}
+
 async function getList(fastify, qs) {
     return await paginate(fastify, {
         page: parseInt(qs.page) || 1, //страница
@@ -164,7 +199,7 @@ async function routes(fastify, options) {
     })
 
     fastify.post('/show_all', async function (request, reply) {
-        const query = await client.query('SELECT * FROM users')
+        const query = await client.query('SELECT * FROM reviews JOIN users on reviews.userid = users.id')
         reply.send(query.rows)
     })
 
@@ -252,8 +287,15 @@ async function routes(fastify, options) {
     //получение отзывов
     fastify.get('/review', async function (request, reply) {
         try {
-            const { rows } = await client.query('SELECT * FROM reviews')
-            reply.send(rows)
+            const reviews_query = await client.query('SELECT * FROM reviews')
+            for (let i = 1; i <= Object.keys(reviews_query.rows).length; i++) {
+                const user_query = await client.query('SELECT * FROM users WHERE id = $1', [reviews_query.rows[i-1].userid])
+                reviews_query.rows[i-1].userid = user_query.rows[0]
+            }
+            reply.code(201)
+            return {
+                review: reviews_query.rows,
+            }
         } catch (err) {
             throw new Error(err)
         }
