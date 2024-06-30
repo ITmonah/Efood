@@ -38,7 +38,7 @@
                 />
               </svg>
             </button>
-            <h1>Sing in</h1>
+            <h1>Sing In</h1>
           </div>
           <div class="input_form">
             <label for="auth">Email</label>

@@ -12,7 +12,9 @@
           <button class="download_btn">Download App</button>
         </div>
       </div>
-      <div><img src="public/img/scooter.png" alt="" /></div>
+      <div style="max-width: 733px">
+        <img src="public/img/scooter.png" alt="" />
+      </div>
     </div>
     <div class="main_box">
       <h1>
@@ -20,7 +22,7 @@
       </h1>
       <div class="main_box_items">
         <ul class="category_btns">
-          <div v-for="item in category" :key="item.id">
+          <div v-for="item in category" :key="item.id" class="category_btns_in">
             <li>
               <input
                 type="radio"
@@ -36,15 +38,22 @@
             </li>
           </div>
         </ul>
-        <div class="grid grid-cols-5 gap-8">
-          <div v-for="p in product" :key="p.id">
+        <div
+          class="flex justify-between flex-wrap food_card_divs"
+          style="gap: 6px"
+        >
+          <div v-for="p in product" :key="p.id" class="food_card_div">
             <FoodCard :product="p" />
           </div>
         </div>
       </div>
     </div>
     <div class="main_box_row">
-      <img src="public/img/food_delivery.png" alt="food_delivery" />
+      <img
+        src="public/img/food_delivery.png"
+        alt="food_delivery"
+        class="img_tele"
+      />
       <div class="main_box_row_text">
         <h1>
           <span style="color: rgb(255, 104, 56)">Stay</span> at home, we will
@@ -73,7 +82,7 @@
     </div>
     <div class="main_box">
       <h1>Top Food <span style="color: #ff7a50">restaurant</span></h1>
-      <div class="grid grid-cols-3 gap-11">
+      <div class="grid xl:grid-cols-3 gap-11 lg:grid-cols-2 md:grid-cols-2">
         <div v-for="p in product" :key="p.id">
           <RestCard :product="p" />
         </div>
@@ -98,7 +107,7 @@
           </button>
         </div>
       </div>
-      <img src="public/img/tele.png" alt="telephones" />
+      <img src="public/img/tele.png" alt="telephones" class="img_tele" />
     </div>
     <div class="main_box">
       <h1>What Our Client Are <span style="color: #ff7a50">Saying</span></h1>
@@ -177,7 +186,7 @@
         </div>
       </div>
     </div>
-    <SubBox />
+    <!-- <SubBox /> -->
   </div>
 </template>
 
@@ -220,7 +229,7 @@ export default {
   position: relative;
 }
 .main_box_review_text p {
-  width: 573px;
+  max-width: 573px;
   color: rgb(54, 56, 83);
   font-size: 20px;
   font-weight: 400;
@@ -270,9 +279,11 @@ export default {
 .main_head img {
   position: absolute;
   top: 0;
+  max-width: 733px;
+  width: 100%;
 }
 .main_head_text {
-  width: 530px;
+  max-width: 530px;
   margin-bottom: 110px;
 }
 .main_head_text h1 {
@@ -310,6 +321,13 @@ export default {
   border-radius: 5px;
   box-shadow: 0px 22px 40px 0px rgba(255, 104, 56, 0.19);
   background: rgb(255, 122, 80);
+  transition: 0.3s;
+}
+.explore_btn:hover {
+  transform: scale(1.1);
+}
+.explore_btn:active {
+  opacity: 0.6;
 }
 .download_btn {
   color: rgb(54, 56, 83);
@@ -318,7 +336,11 @@ export default {
   line-height: 24px;
   letter-spacing: 0%;
   text-align: center;
+  transition: 0.3 s;
   text-decoration-line: underline;
+}
+.download_btn:hover {
+  color: rgb(255, 122, 80);
 }
 .main_head_btns {
   display: flex;
@@ -358,6 +380,8 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 .category_btns label img {
   width: 44px;
@@ -409,7 +433,7 @@ export default {
   gap: 28px;
 }
 .main_box_row_text {
-  width: 449px;
+  max-width: 449px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -425,6 +449,13 @@ export default {
   font-weight: 400;
   line-height: 24px;
   margin-top: 20px;
+  transition: 0.3s;
+}
+.main_box_row_text button:hover {
+  transform: scale(1.1);
+}
+.main_box_row_text button:active {
+  opacity: 0.6;
 }
 .main_box_row {
   display: flex;
@@ -449,7 +480,7 @@ export default {
   text-align: left;
 }
 .main_box_review_box {
-  height: 358px;
+  min-height: 358px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -468,5 +499,105 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+@media screen and (max-width: 1360px) {
+  .main_head img {
+    max-width: 533px;
+    position: relative;
+    width: 100%;
+  }
+  .main_head_text {
+    margin-bottom: 0px;
+  }
+  .main_head {
+    min-height: 481px;
+    justify-content: space-between;
+  }
+}
+@media screen and (max-width: 1155px) {
+  .main_box_review {
+    flex-direction: column;
+  }
+  .main_box_review_box {
+    padding-right: 0px;
+    margin-top: 30px;
+  }
+}
+@media screen and (max-width: 1118px) {
+  .category_btns {
+    justify-content: center;
+  }
+
+  .category_btns_in {
+    width: 49%;
+  }
+  .category_btns label {
+    width: 100%;
+  }
+  .food_card_div {
+    display: flex;
+    justify-content: center;
+    width: 24%;
+  }
+  .food_card_divs {
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .main {
+    gap: 90px;
+  }
+  .img_tele {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 630px) {
+  .img_tele {
+    display: none;
+  }
+  .main_box_row {
+    justify-content: center;
+  }
+  .main_head img {
+    display: none;
+  }
+  .main_box_review_text span {
+    display: none;
+  }
+  .main_box_review img {
+    width: 50%;
+    height: 50%;
+  }
+  .main_box_review_text p {
+    font-size: 16px;
+    line-height: 35px;
+  }
+  .main_box_review_box {
+    min-height: 250px;
+  }
+  .category_btns_in {
+    width: 100%;
+  }
+  .category_btns label {
+    width: 100%;
+  }
+  .food_card_div {
+    width: 49%;
+  }
+  .main_head_text h1 {
+    font-size: 46px;
+    line-height: 58px;
+  }
+  .main_head {
+    min-height: 300px;
+  }
+  .main_box_row_text2 {
+    width: 90%;
+  }
+  @media screen and (max-width: 560px) {
+    .food_card_div {
+      width: 100%;
+    }
+  }
 }
 </style>

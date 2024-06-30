@@ -115,6 +115,24 @@ export default defineComponent({
   box-shadow: 0px 5px 12px 0px rgba(255, 104, 56, 0.19);
   background: rgb(255, 122, 80);
   width: 79px;
+  transition: 0.3s;
   height: 33px;
+}
+.rest_card_time span:hover {
+  transform: scale(1.1);
+}
+@media screen and (max-width: 500px) {
+  .rest_card {
+    width: 100%;
+    height: 457px;
+  }
+  @media screen and (max-width: 373px) {
+    .rest_card_time p {
+      font-size: 14px;
+    }
+    .rest_card_text h1 {
+      font-size: 18px;
+    }
+  }
 }
 </style>

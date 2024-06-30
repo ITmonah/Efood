@@ -41,7 +41,7 @@
             <button type="button" class="btn-close-reg" @click="close">
               Back
             </button>
-            <h1>Sing up</h1>
+            <h1>Sing Up</h1>
           </div>
           <div class="input_form">
             <label for="auth2">Email</label>

@@ -4,7 +4,7 @@
       <NuxtLink to="/" class="nav_logo"
         ><span style="color: rgb(255, 104, 56)">E</span>Food</NuxtLink
       >
-      <nav>
+      <nav class="header_nav">
         <ul class="navig">
           <li><NuxtLink to="/">Home</NuxtLink></li>
           <li><NuxtLink to="/service">Service</NuxtLink></li>
@@ -23,17 +23,33 @@
           </li>
         </ul>
       </nav>
+      <div class="hamburger-menu">
+        <input id="menu__toggle" type="checkbox" v-model="togl" />
+        <label class="menu__btn" for="menu__toggle">
+          <span></span>
+        </label>
+        <ul class="menu__box">
+          <li @click="closeMenu()">
+            <NuxtLink to="/" class="flex gap-1">Home</NuxtLink>
+          </li>
+          <li @click="closeMenu()">
+            <NuxtLink to="/service" class="flex gap-1">Service</NuxtLink>
+          </li>
+          <li @click="closeMenu()">
+            <NuxtLink to="/top_cities" class="flex gap-1">Top cities</NuxtLink>
+          </li>
+          <li @click="closeMenu()">
+            <NuxtLink to="/contract" class="flex gap-1">Contract</NuxtLink>
+          </li>
+        </ul>
+      </div>
     </header>
-    <div style="width: 1171px"><slot /></div>
+
+    <div class="slot" style="max-width: 1171px"><slot /></div>
 
     <footer
-      class="grid grid-cols-5 items-start gap-10"
-      style="
-        max-width: 1171px;
-        width: 100%;
-        margin-top: 150px;
-        justify-content: space-between;
-      "
+      class="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 items-start gap-10 mem"
+      style="max-width: 1171px; width: 100%; justify-content: space-between"
     >
       <div class="footer_links">
         <NuxtLink to="/"
@@ -148,28 +164,28 @@
           </button>
         </div>
       </div>
-      <div class="footer_links pl-10">
+      <div class="footer_links lg:pl-10 md:pl-0">
         <h1>Service</h1>
         <NuxtLink to="/contract">How it works</NuxtLink>
         <NuxtLink to="/contract">Home delivery</NuxtLink>
         <NuxtLink to="/contract">Products</NuxtLink>
         <NuxtLink to="/contract">Menu</NuxtLink>
       </div>
-      <div class="footer_links pl-10">
+      <div class="footer_links lg:pl-10 md:pl-0">
         <h1>Company</h1>
         <NuxtLink to="/contract">About Us</NuxtLink>
         <NuxtLink to="/contract">News</NuxtLink>
         <NuxtLink to="/contract">Our trusted partner</NuxtLink>
         <NuxtLink to="/contract">New users FAQ</NuxtLink>
       </div>
-      <div class="footer_links pl-10">
+      <div class="footer_links lg:pl-10 md:pl-0">
         <h1>Supports</h1>
         <NuxtLink to="/contract">Help center</NuxtLink>
-        <NuxtLink to="/contract">Feedbcak</NuxtLink>
+        <NuxtLink to="/contract">Feedback</NuxtLink>
         <NuxtLink to="/contract">Contact us</NuxtLink>
         <NuxtLink to="/contract">Terms conditins</NuxtLink>
       </div>
-      <div class="footer_links pl-10">
+      <div class="footer_links lg:pl-10 md:pl-0">
         <h1>Resources</h1>
         <NuxtLink to="/contract">Download app</NuxtLink>
         <NuxtLink to="/contract">Blog</NuxtLink>
@@ -211,6 +227,7 @@ export default {
       isModalVisible1: false,
       authShow: false,
       user: {},
+      togl: false,
     };
   },
   methods: {
@@ -225,6 +242,9 @@ export default {
     },
     closeModal1() {
       this.isModalVisible1 = false;
+    },
+    closeMenu() {
+      this.togl = false;
     },
   },
 };
@@ -267,6 +287,9 @@ export default {
   margin-bottom: 25px;
   margin-top: 25px;
 }
+.mem {
+  margin-top: 150px;
+}
 .footer_info_text {
   color: rgb(55, 56, 61);
   font-size: 16px;
@@ -308,9 +331,11 @@ export default {
 
 .router-link-exact-active {
   color: rgb(255, 104, 56);
+  transition: 0.2s;
 }
 header {
-  width: 1171px;
+  max-width: 1171px;
+  width: 100%;
   margin-top: 54px;
   margin-bottom: 104px;
   display: flex;
@@ -364,5 +389,114 @@ header {
 }
 .sing_btn:active {
   opacity: 0.6;
+}
+.hamburger-menu {
+  display: none;
+}
+#menu__toggle {
+  opacity: 0;
+}
+#menu__toggle:checked + .menu__btn > span {
+  transform: rotate(45deg);
+}
+#menu__toggle:checked + .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0deg);
+}
+#menu__toggle:checked + .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+#menu__toggle:checked ~ .menu__box {
+  left: 0 !important;
+}
+.menu__btn {
+  position: fixed;
+  top: 35px;
+  right: 40px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 100;
+}
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #313131;
+  transition-duration: 0.25s;
+}
+.menu__btn > span::before {
+  content: "";
+  top: -8px;
+}
+.menu__btn > span::after {
+  content: "";
+  top: 8px;
+}
+.menu__box {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  background-color: #222222;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  transition-duration: 0.25s;
+  z-index: 100;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.menu__box li {
+  padding-left: 5%;
+  font-size: 30px;
+  color: #e7e7e7;
+}
+.menu__item {
+  display: block;
+  padding: 12px 24px;
+  color: #333;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition-duration: 0.25s;
+}
+.menu__item:hover {
+  background-color: #cfd8dc;
+}
+@media screen and (max-width: 1200px) {
+  .slot,
+  header,
+  footer,
+  .footer_privacy {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .hamburger-menu {
+    display: block;
+  }
+  .header_nav {
+    display: none;
+  }
+  header {
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+}
+@media screen and (max-width: 630px) {
+  .mem {
+    margin-top: 80px;
+  }
 }
 </style>

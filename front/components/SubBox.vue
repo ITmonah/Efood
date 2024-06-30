@@ -10,7 +10,8 @@
     <div
       style="
         position: relative;
-        width: 838.5px;
+        max-width: 838.5px;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -56,6 +57,9 @@ export default {};
   justify-content: center;
   align-items: center;
   gap: 32px;
+  border-radius: 20px;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 .sub_box_text {
   display: flex;
@@ -126,5 +130,10 @@ export default {};
 }
 .sub_box_btn:hover {
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+}
+@media screen and (max-width: 630px) {
+  .sub_box h1 {
+    font-size: 30px;
+  }
 }
 </style>

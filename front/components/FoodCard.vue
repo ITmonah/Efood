@@ -119,4 +119,9 @@ export default defineComponent({
 .food_card_text button:hover {
   box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.12);
 }
+@media screen and (max-width: 1118px) {
+  .food_card {
+    width: 100%;
+  }
+}
 </style>
