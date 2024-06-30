@@ -44,6 +44,7 @@ model categories {
 model restaurants {
   id          Int      @id @default(autoincrement())
   name        String //@unique
+  img         String
   first_date  DateTime @db.Time()
   second_date DateTime @db.Time()
 }
