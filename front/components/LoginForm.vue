@@ -1,7 +1,7 @@
 <template>
   <transition name="modal-fade">
     <div class="modal-backdrop">
-      <form>
+      <form @submit.prevent="get_log()">
         <div
           class="modal"
           role="dialog"
@@ -76,6 +76,28 @@ export default {
     },
     close1() {
       this.$emit("click1");
+    },
+    async get_log() {
+      let credetentials = {
+        email: this.login,
+        password: this.password,
+      };
+      fetch("http://127.0.0.1:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credetentials),
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if (!json.error) {
+            localStorage.setItem("access_token", json.token);
+            location.reload();
+          } else {
+            alert(JSON.stringify(json.detail));
+          }
+        });
     },
   },
 };

@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }
   },
-  modules: ["@nuxtjs/tailwindcss", (_options, nuxt) => {
+  modules: ["@nuxtjs/tailwindcss", '@formkit/auto-animate/nuxt', (_options, nuxt) => {
     nuxt.hooks.hook('vite:extendConfig', (config) => {
       // @ts-expect-error
       config.plugins.push(vuetify({ autoImport: true }))

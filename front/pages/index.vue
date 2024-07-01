@@ -30,6 +30,7 @@
                 :id="`rad_cat` + item.name"
                 :checked="item.name == 'Burger'"
                 style="display: none"
+                @change="aboba1(item.name)"
               />
               <label :for="`rad_cat` + item.name">
                 <img :src="`../img/category_${item.image}.svg`" alt="" />
@@ -38,13 +39,84 @@
             </li>
           </div>
         </ul>
-        <div
-          class="flex justify-between flex-wrap food_card_divs"
-          style="gap: 6px"
-        >
-          <div v-for="p in product" :key="p.id" class="food_card_div">
+        <div class="grid grid-cols-5 food_card_divs" v-auto-animate>
+          <div v-for="p in product.new_data" :key="p.id" class="food_card_div">
             <FoodCard :product="p" />
           </div>
+        </div>
+        <div class="food_pagin">
+          <button
+            class="mr-3"
+            :disabled="page == product.firstPage"
+            @click="pag_1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="34"
+              height="34"
+              viewBox="0 0 34 34"
+              fill="none"
+              class="pagin_arr"
+            >
+              <path
+                d="M7.43094e-07 17C3.33327e-07 7.62563 7.62563 -3.33327e-07 17 -7.43094e-07C26.3744 -1.15286e-06 34 7.62563 34 17C34 26.3744 26.373 34 17 34C7.62696 34 1.15286e-06 26.3744 7.43094e-07 17ZM31.3664 17C31.3664 9.07939 24.9219 2.6336 17 2.6336C9.07807 2.63361 2.63361 9.07939 2.63361 17C2.63361 24.9219 9.07807 31.3664 17 31.3664C24.9219 31.3664 31.3664 24.9206 31.3664 17Z"
+                fill="#000"
+              />
+              <path
+                d="M18.8171 24.5189L12.2331 17.9349C11.7222 17.4213 11.7222 16.5918 12.2331 16.0782L18.8171 9.49413C19.3096 9.07145 20.0378 9.07145 20.5303 9.49413C21.0821 9.96688 21.1465 10.7991 20.6738 11.3509L15.0247 17L20.6739 22.6622C21.1848 23.1758 21.1848 24.0054 20.6739 24.5189C20.1603 25.0299 19.3307 25.0299 18.8171 24.5189Z"
+                fill="#000"
+              />
+            </svg>
+          </button>
+          <div v-for="item in product.lastPage" :key="item">
+            <div v-if="item == 1">
+              <input
+                type="radio"
+                :id="`radio_` + item"
+                name="pagin"
+                @change="aboba(item)"
+                :checked="page == 1"
+              />
+              <label :for="`radio_` + item"
+                ><div class="pagin_div"></div
+              ></label>
+            </div>
+            <div v-else>
+              <input
+                type="radio"
+                :id="`radio_` + item"
+                name="pagin"
+                @change="aboba(item)"
+                :checked="page == item"
+              />
+              <label :for="`radio_` + item"
+                ><div class="pagin_div"></div
+              ></label>
+            </div>
+          </div>
+          <button
+            class="ml-3"
+            :disabled="page == product.lastPage"
+            @click="pag_2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="34"
+              height="34"
+              viewBox="0 0 34 34"
+              fill="none"
+              class="pagin_arr"
+            >
+              <path
+                d="M34 17C34 7.62563 26.3744 -3.33327e-07 17 -7.43094e-07C7.62563 -1.15286e-06 -3.33327e-07 7.62563 -7.43094e-07 17C-1.15286e-06 26.3744 7.62696 34 17 34C26.373 34 34 26.3744 34 17ZM2.63361 17C2.63361 9.07939 9.07807 2.6336 17 2.6336C24.9219 2.63361 31.3664 9.07939 31.3664 17C31.3664 24.9219 24.9219 31.3664 17 31.3664C9.07806 31.3664 2.6336 24.9206 2.63361 17Z"
+                fill="#000"
+              />
+              <path
+                d="M15.1829 24.5189L21.7669 17.9349C22.2778 17.4213 22.2778 16.5918 21.7669 16.0782L15.1829 9.49413C14.6904 9.07145 13.9622 9.07145 13.4697 9.49413C12.9179 9.96688 12.8535 10.7991 13.3262 11.3509L18.9753 17L13.3261 22.6622C12.8152 23.1758 12.8152 24.0054 13.3261 24.5189C13.8397 25.0299 14.6693 25.0299 15.1829 24.5189Z"
+                fill="#000"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
@@ -83,8 +155,8 @@
     <div class="main_box">
       <h1>Top Food <span style="color: #ff7a50">restaurant</span></h1>
       <div class="grid xl:grid-cols-3 gap-11 lg:grid-cols-2 md:grid-cols-2">
-        <div v-for="p in product" :key="p.id">
-          <RestCard :product="p" />
+        <div v-for="p in restaurant" :key="p.id">
+          <RestCard :restaurant="p" />
         </div>
       </div>
     </div>
@@ -112,16 +184,12 @@
     <div class="main_box">
       <h1>What Our Client Are <span style="color: #ff7a50">Saying</span></h1>
       <div class="main_box_review">
-        <img :src="product[0].image" alt="" />
+        <img :src="review.review[0].img" alt="" />
         <div class="main_box_review_box">
           <div class="main_box_review_text">
             <span>“</span>
             <p>
-              EFood has the most intriguing food order system in the country. UI
-              in both their app and web Is very simple and easy to use,
-              enhancing the UX. Their delivery men are also quite professional
-              and knows the neighborhood well. Till now I never had to guide
-              them to my address for delivery;
+              {{ review.review[0].text }}
             </p>
             <span style="transform: rotate(180deg); bottom: -25px; right: -35px"
               >“</span
@@ -129,8 +197,8 @@
           </div>
           <div class="review_bottom">
             <div class="review_bottom_text">
-              <h1>Anglina Jole</h1>
-              <p>Food lover</p>
+              <h1>{{ review.review[0].userid.name }}</h1>
+              <p>{{ review.review[0].userid.status }}</p>
             </div>
             <div class="flex gap-11">
               <button>
@@ -186,14 +254,13 @@
         </div>
       </div>
     </div>
-    <!-- <SubBox /> -->
+    <SubBox />
   </div>
 </template>
 
 <script setup>
-const { data: product } = await useFetch(
-  "https://fakestoreapi.com/products?limit=5"
-);
+const { data: restaurant } = await useFetch("http://127.0.0.1:3000/restaurant");
+const { data: review } = await useFetch("http://127.0.0.1:3000/review");
 </script>
 
 <script>
@@ -207,12 +274,85 @@ export default {
         { name: "Asian Food", image: 4 },
         { name: "Set Menu", image: 5 },
       ],
+      category_name: "Burger",
+      page: 1,
+      product: {},
+      error: false,
     };
+  },
+  methods: {
+    get_recipes(category) {
+      fetch(
+        `http://127.0.0.1:3000/food?page=${this.page}&perPage=5&category=${category}`,
+        {
+          method: "GET",
+        }
+      )
+        .then((response) => response.json())
+        .then((json) => {
+          if (!json.error) {
+            this.product = json;
+          } else {
+            this.error = true;
+          }
+        });
+    },
+    aboba(page) {
+      this.page = page;
+      this.get_recipes(this.category_name);
+    },
+    aboba1(cat) {
+      this.page = 1;
+      this.category_name = cat;
+      this.get_recipes(this.category_name);
+    },
+    pag_1() {
+      this.page = this.page - 1;
+      this.get_recipes(this.category_name);
+    },
+    pag_2() {
+      this.page = this.page + 1;
+      this.get_recipes(this.category_name);
+    },
+  },
+  mounted() {
+    this.get_recipes(this.category_name);
   },
 };
 </script>
 
 <style scoped>
+.food_pagin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+}
+.food_pagin input:checked + label .pagin_div {
+  background: rgb(255, 122, 80);
+  opacity: 1;
+}
+.food_pagin input {
+  display: none;
+}
+.food_pagin button:disabled .pagin_arr {
+  filter: invert(94%) sepia(9%) saturate(304%) hue-rotate(198deg)
+    brightness(93%) contrast(84%);
+}
+.food_pagin button:enabled .pagin_arr {
+  filter: invert(68%) sepia(53%) saturate(3901%) hue-rotate(327deg)
+    brightness(102%) contrast(101%);
+}
+.pagin_div {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  background: rgb(54, 56, 83);
+  border-radius: 100%;
+  opacity: 0.2;
+  transition: 0.2s;
+}
+
 .review_bottom_text {
   display: flex;
   flex-direction: column;
@@ -500,6 +640,13 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+.food_card_div {
+  display: flex;
+  justify-content: center;
+}
+.food_card_divs {
+  gap: 30.25px;
+}
 @media screen and (max-width: 1360px) {
   .main_head img {
     max-width: 533px;
@@ -540,6 +687,9 @@ export default {
     width: 24%;
   }
   .food_card_divs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
     justify-content: center;
   }
 }
@@ -549,6 +699,11 @@ export default {
   }
   .img_tele {
     width: 50%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .food_card_div {
+    width: 49%;
   }
 }
 @media screen and (max-width: 630px) {
@@ -581,9 +736,7 @@ export default {
   .category_btns label {
     width: 100%;
   }
-  .food_card_div {
-    width: 49%;
-  }
+
   .main_head_text h1 {
     font-size: 46px;
     line-height: 58px;

@@ -1,8 +1,8 @@
 <template>
   <div class="rest_card">
-    <img :src="product.image" alt="rest_card" />
+    <img :src="restaurant.img" alt="rest_card" />
     <div class="rest_card_text">
-      <h1 class="line-clamp-1">{{ product.title }}</h1>
+      <h1 class="line-clamp-1">{{ restaurant.name }}</h1>
       <div class="rest_card_time">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@
             fill="#363853"
           />
         </svg>
-        <p>11.00 AM - 10.00 PM</p>
+        <p>{{ date_first }} AM - {{ date_sec }} PM</p>
 
         <NuxtLink to="/"
           ><span
@@ -57,7 +57,26 @@
 <script>
 export default defineComponent({
   props: {
-    product: Object,
+    restaurant: Object,
+  },
+  data() {
+    return {
+      date_first: "",
+      date_sec: "",
+    };
+  },
+  methods: {
+    dateCount() {
+      this.date_first = this.restaurant.first_date
+        .slice(0, 5)
+        .replaceAll(":", ".");
+      this.date_sec = this.restaurant.second_date
+        .slice(0, 5)
+        .replaceAll(":", ".");
+    },
+  },
+  mounted() {
+    this.dateCount();
   },
 });
 </script>

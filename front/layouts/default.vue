@@ -20,6 +20,12 @@
             <button class="sing_btn" v-if="!authShow" @click="showModal">
               Sign Up
             </button>
+            <div v-if="authShow" class="flex gap-4">
+              <p class="line-clamp-1" style="max-width: 150px">
+                <b>{{ user.username }}</b>
+              </p>
+              <button @click="acc_exit" style="color: #eb5160">Exit</button>
+            </div>
           </li>
         </ul>
       </nav>
@@ -29,6 +35,17 @@
           <span></span>
         </label>
         <ul class="menu__box">
+          <li @click="closeMenu()">
+            <button class="sing_btn" v-if="!authShow" @click="showModal">
+              Sign Up
+            </button>
+            <div v-if="authShow" class="flex gap-4">
+              <p class="line-clamp-1" style="max-width: 150px">
+                <b>{{ user.username }}</b>
+              </p>
+              <button @click="acc_exit" style="color: #eb5160">Exit</button>
+            </div>
+          </li>
           <li @click="closeMenu()">
             <NuxtLink to="/" class="flex gap-1">Home</NuxtLink>
           </li>
@@ -246,6 +263,32 @@ export default {
     closeMenu() {
       this.togl = false;
     },
+    get_auth(token) {
+      fetch("http://127.0.0.1:3000/getUsername", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if (!json.error) {
+            this.user = json;
+            this.authShow = true;
+          } else {
+            this.authShow = false;
+          }
+        });
+    },
+    async acc_exit() {
+      localStorage.setItem("access_token", "");
+      await navigateTo({ path: "/" });
+      location.reload();
+    },
+  },
+  beforeMount() {
+    let token = localStorage.getItem("access_token");
+    this.get_auth(token);
   },
 };
 </script>

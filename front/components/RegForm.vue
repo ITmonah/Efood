@@ -1,7 +1,7 @@
 <template>
   <transition name="modal-fade">
     <div class="modal-backdrop">
-      <form>
+      <form @submit.prevent="get_reg()">
         <div
           class="modal"
           role="dialog"
@@ -100,6 +100,33 @@ export default {
     close1() {
       this.$emit("close1");
       this.$emit("close");
+    },
+    async get_reg() {
+      let credetentials = {
+        email: this.login,
+        name: this.name,
+        password: this.password,
+      };
+      this.isDisabled = true;
+      fetch("http://127.0.0.1:3000/registrate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credetentials),
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if (!json.error) {
+            this.isDisabled = true;
+            alert("Успешная регистрация");
+            this.close();
+            this.isDisabled = false;
+          } else {
+            this.isDisabled = false;
+            alert(JSON.stringify(json.detail));
+          }
+        });
     },
   },
 };
